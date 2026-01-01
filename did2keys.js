@@ -6,6 +6,6 @@ const secret = Deno.args[1];
 const privateKey = DIDKey.decode(secret);
 const publicKey = DIDKey.decode(did);
 const keys = { publicKey, privateKey };
-console.log(keys);
+//console.log(keys);
 console.log("publicKey", Base16.encode(keys.publicKey.data));
 console.log("privateKey", Base16.encode(keys.privateKey.data));
