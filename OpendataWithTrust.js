@@ -1,8 +1,8 @@
+import * as sec from "https://code4fukui.github.io/sec.js/sec.js";
 import { Base16 } from "https://code4fukui.github.io/Base16/Base16.js";
-import Ed25519 from "https://code4fukui.github.io/forge-es/lib/ed25519.js";
 
 export const genPubkey = (prikey) => {
-  return new Uint8Array(Ed25519.generateKeyPair({ seed: prikey }).publicKey);
+  return sec.pubkey(prikey);
 };
 
 // keys: { publicKey, privateKey } or privateKey
@@ -13,7 +13,7 @@ export const makeTrust = (bin, keys) => {
     keys = { publicKey, privateKey };
   }
   const message = bin;
-  const signature = Ed25519.sign({ privateKey: keys.privateKey, message, encoding: "binary" });
+  const signature = sec.sign(keys.privateKey, message);
   return {
     alg: "ES256",
     publicKey: Base16.encode(keys.publicKey),
@@ -28,6 +28,6 @@ export const verifyTrust = (bin, trustjson) => {
   }
   const signature = Base16.decode(trustjson.signature);
   const message = bin;
-  const chk = Ed25519.verify({ signature, publicKey, message, encoding: "binary" });
+  const chk = sec.verify(signature, publicKey, message);
   return chk;
 };
