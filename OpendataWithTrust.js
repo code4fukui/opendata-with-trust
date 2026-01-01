@@ -1,5 +1,5 @@
 import { Base16 } from "https://code4fukui.github.io/Base16/Base16.js";
-import Ed25519 from "https://taisukef.github.io/forge-es/lib/ed25519.js";
+import Ed25519 from "https://code4fukui.github.io/forge-es/lib/ed25519.js";
 
 export const genPubkey = (prikey) => {
   return new Uint8Array(Ed25519.generateKeyPair({ seed: prikey }).publicKey);

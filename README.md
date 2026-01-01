@@ -1,18 +1,20 @@
 # Opendata with Trust
 
-Opendata with Trust is a tool that enhances the reliability and trustworthiness of dataset by enabling verifiable authentication and validation of the data.
+- "Opendata with Trust" is a tool that enhances the reliability and trustworthiness of dataset by enabling verifiable authentication and validation of the data.
+
+- 「Opendata with Trust」は、データの検証可能な認証とバリデーションを可能にすることで、公開データセットの信頼性と信頼度を高めるツールです。
 
 ## install
 
 ```sh
-deno install --allow-read --allow-write makeTrust.js
-deno install --allow-read verifyTrust.js
+deno install --global -f --allow-read --allow-write --allow-import=code4fukui.github.io makeTrust.js
+deno install --global -f --allow-read --allow-import=code4fukui.github.io verifyTrust.js
 ```
 
 ## usage
 
 ```sh
-makeTrust [fn] [publickey in Base16] [privateKey in Base16]
+makeTrust [fn] [privateKey in Base16]
 ```
 → [fn].trust.json
 
@@ -20,10 +22,16 @@ makeTrust [fn] [publickey in Base16] [privateKey in Base16]
 verifyTrust [fn]
 ```
 
+## how to generate prikey
+
+```sh
+openssl genpkey -algorithm ed25519 --out prikey.pem
+deno -A pem2keys.js prikey.pem
+```
+
 ## test
 
 ```sh
 cd test
-openssl genpkey -algorithm ed25519 --out prikey.pem
-openssl pkey -in prikey.pem -pubout > pubkey.pem
+deno test -A
 ```
