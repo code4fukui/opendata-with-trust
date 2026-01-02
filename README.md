@@ -1,5 +1,7 @@
 # Opendata with Trust
 
+![Opendata with Trust Logo](./opendata-with-trust.png)
+
 - "Opendata with Trust" is a tool that enhances the reliability and trustworthiness of dataset by enabling verifiable authentication and validation of the data.
 
 - 「Opendata with Trust」は、データの検証可能な認証とバリデーションを可能にすることで、公開データセットの信頼性と信頼度を高めるツールです。
